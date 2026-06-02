@@ -140,9 +140,9 @@ def menu_sugestoes_personalizadas(animais):
     else:
         cuidados_especiais.append(f"Atenção ao prontuário registrado: '{animal_encontrado['saúde']}'. Avaliar com o veterinário antes da adoção.")
 
-    print("\n" + "="*50)
-    print(f"Sugestões personalizadas para o animal '{animal_encontrado['nome']}':")
-    print("="*50)
+    print("\n" + "="*100)
+    print(f"\t\t\t\tSugestões personalizadas para o animal '{animal_encontrado['nome']}':")
+    print("="*100)
 
     print("\nSugestões de adotantes ideais:")
     for sugestao in sugestoes_adotante:
@@ -155,7 +155,7 @@ def menu_sugestoes_personalizadas(animais):
     print("\nCompatibilidade com outros animais e crianças:")
     for compatibilidade in compatibilidade_com_outros_animais:
         print(f"- {compatibilidade}") 
-    print("="*50 + "\n")
+    print("="*100 + "\n")
 
 while True:
     print('\nEscolha uma opção:')
