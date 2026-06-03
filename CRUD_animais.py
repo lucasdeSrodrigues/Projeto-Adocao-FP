@@ -3,12 +3,12 @@ animais = []
 def adicionar_animais():
     animal = {
         'nome': input('Digite o nome do animal: '),
-        'especie': input('Digite a espécie do animal: '),
+        'especie': input('Digite a espécie do animal(cachorro/gato): '),
         'raca': input('Digite a raça do animal: '),
         'idade': int(input('Digite a idade do animal: ')),
-        'saúde': input('Digite o estado de saúde do animal: '),
+        'saúde': input('Digite o estado de saúde do animal(saudavel/em tratamento/deficiente/cadeirante/sem vacina): '),
         'data de chegada': input('Digite a data de chegada do animal: '),        
-        'comportamento': input('Digite o comportamento do animal: ')
+        'comportamento': input('Digite o comportamento do animal(calmo/agitado): ')
     }
     animais.append(animal)
     print('Animal adicionado')
@@ -17,9 +17,11 @@ def adicionar_animais():
 def visualizar_animais():
     if not animais:
         print('Nenhum animal cadastrado')
+        return False
     else:
         for i, animal in enumerate(animais):
             print(f"{i + 1}. {animal['nome']} - {animal['especie']} - {animal['raca']} - {animal['idade']} anos - {animal['saúde']} - {animal['data de chegada']} - {animal['comportamento']}")
+            return True
 
 
 def editar_animais():
@@ -177,6 +179,80 @@ def excluir_cuidado():
         print('Entrada inválida. Digite um número.')
 
 
+def menu_sugestoes_personalizadas(animais):
+    nome_busca = input('Digite o nome do animal para buscar sugestões personalizadas: ')
+    animal_encontrado = None
+    for animal in animais:
+        if animal['nome'].lower() == nome_busca.lower():
+            animal_encontrado = animal
+            break
+    if animal_encontrado is None:
+        print('Animal não encontrado')
+        return
+    sugestoes_adotante = []
+    cuidados_especiais = []
+    compatibilidade_com_outros_animais = []
+    if animal_encontrado['idade'] <= 1:
+        sugestoes_adotante.append("Tutores com tempo livre para gastar energia e educar (fase de crescimento).")
+        cuidados_especiais.append("Acompanhamento estrito do esquema de vacinas para filhotes.")
+    elif animal_encontrado['idade'] >= 8:
+        sugestoes_adotante.append("Famílias ou pessoas mais velhas que buscam um pet calmo e companheiro.")
+        cuidados_especiais.append("Alimentação com ração sênior e atenção a dores nas articulações.")
+    else:
+        sugestoes_adotante.append("Adapta-se bem a rotinas dinâmicas (famílias adultas).")
+
+    if animal_encontrado['especie'].lower() == "gato":
+        cuidados_especiais.append("O ambiente do adotante DEVE ter telas de proteção nas janelas.")
+        compatibilidade_com_outros_animais.append("Geralmente toleram outros gatos se adaptados lentamente, mas cuidado com aves/roedores.")
+    elif animal_encontrado['especie'].lower() == "cachorro":
+        cuidados_especiais.append("Necessidade de passeios diários para gasto de energia e estímulo mental.")
+
+    comportamento = animal_encontrado['comportamento'].lower().strip()
+    if "agitado" in comportamento:
+        sugestoes_adotante.append("Casas com quintal grande ou tutores que praticam corridas/caminhadas.")
+        compatibilidade_com_outros_animais.append("Excelente para conviver com crianças ativas.")
+    elif "calmo" in comportamento:
+        sugestoes_adotante.append("Ambientes silenciosos e sem muita movimentação ou barulho excessivo.")
+        compatibilidade_com_outros_animais.append("Pode se assustar com crianças muito pequenas; prefere ambientes tranquilos.")
+    
+    saude = animal_encontrado['saúde'].lower().strip()
+    if "em tratamento" in saude:
+        cuidados_especiais.append("Adoção especial: O tutor deve ser alertado sobre a continuidade do tratamento médico em casa.")
+        cuidados_especiais.append(f"Observação médica atual: {animal_encontrado['saúde']}.")
+        sugestoes_adotante.append("Pessoas com disponibilidade de tempo para administrar medicações nos horários corretos.")
+   
+    elif "deficiente" in saude or "cadeirante" in saude:
+        cuidados_especiais.append("Ambiente plano, sem escadas altas ou pisos muito escorregadios.")
+        sugestoes_adotante.append("Casas térreas ou apartamentos adaptados para mobilidade reduzida.")
+        compatibilidade_com_outros_animais.append("Evitar convivência inicial com pets muito enérgicos que possam machucá-lo.")
+    
+    elif "sem vacina" in saude:
+        cuidados_especiais.append("Agendar castração/vacinação antes de liberar em definitivo para o adotante.")
+        compatibilidade_com_outros_animais.append("Manter isolado de outros animais não vacinados ou do sexo oposto no abrigo.")
+        
+    elif "saudável" in saude:
+        cuidados_especiais.append("Manter a rotina preventiva padrão (check-up anual e vacinas em dia).")
+    
+    else:
+        cuidados_especiais.append(f"Atenção ao prontuário registrado: '{animal_encontrado['saúde']}'. Avaliar com o veterinário antes da adoção.")
+
+    print("\n" + "="*100)
+    print(f"\t\t\t\tSugestões personalizadas para o animal '{animal_encontrado['nome']}':")
+    print("="*100)
+
+    print("\nSugestões de adotantes ideais:")
+    for sugestao in sugestoes_adotante:
+        print(f"- {sugestao}")
+
+    print("\nCuidados especiais necessários:")
+    for cuidado in cuidados_especiais:
+        print(f"- {cuidado}")
+
+    print("\nCompatibilidade com outros animais e crianças:")
+    for compatibilidade in compatibilidade_com_outros_animais:
+        print(f"- {compatibilidade}") 
+    print("="*100 + "\n")
+
 while True:
     print('\nEscolha uma opção:')
     print('1. Adicionar animal')
@@ -187,7 +263,8 @@ while True:
     print('6. Visualizar cuidados')
     print('7. Editar cuidado')
     print('8. Excluir cuidado')
-    print('9. Sair')
+    print('9. Sugestões personalizadas')
+    print('0. Sair')
 
     opcao = input('Escolha uma opção: ')
 
@@ -208,8 +285,9 @@ while True:
     elif opcao == '8':
         excluir_cuidado()
     elif opcao == '9':
+        menu_sugestoes_personalizadas(animais)
+    elif opcao == '0':
         print('Saindo do programa. Até a próxima!')
         break
     else:
         print('Opção inválida. Tente novamente.')
- 
