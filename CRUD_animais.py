@@ -1,5 +1,5 @@
 animais = []
-#topico 1
+
 def adicionar_animais():
     animal = {
         'nome': input('Digite o nome do animal: '),
@@ -84,7 +84,7 @@ def excluir_animais():
     except ValueError:
         print('Entrada inválida. Digite um número válido.')
 
-#topico 2
+
 cuidados = []
 
 def adicionar_cuidado():
