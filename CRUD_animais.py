@@ -1,4 +1,7 @@
 animais = []
+cuidados = []
+
+#topico 1
 
 def adicionar_animais():
     animal = {
@@ -85,7 +88,7 @@ def excluir_animais():
         print('Entrada inválida. Digite um número válido.')
 
 
-cuidados = []
+#topico 2
 
 def adicionar_cuidado():
     if not animais:
@@ -180,6 +183,7 @@ def excluir_cuidado():
     except ValueError:
         print('Entrada inválida. Digite um número.')
 
+#topico 5
 
 def menu_sugestoes_personalizadas(animais):
     nome_busca = input('Digite o nome do animal para buscar sugestões personalizadas: ')
@@ -262,7 +266,7 @@ while True:
     print('3. Editar animal')
     print('4. Excluir animal')
     print('5. Registrar cuidado')
-    print('6. Visualizar cuidados')
+    print('6. Visualizar cuidado(s)')
     print('7. Editar cuidado')
     print('8. Excluir cuidado')
     print('9. Sugestões personalizadas')
