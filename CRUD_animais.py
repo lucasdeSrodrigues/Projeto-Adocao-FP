@@ -1,3 +1,7 @@
+from datetime import datetime
+
+from topico3 import mostrar_contagem_regressiva, calcular_dias_restantes 
+
 animais = []
 
 def adicionar_animais():
@@ -21,7 +25,10 @@ def visualizar_animais():
     else:
         for i, animal in enumerate(animais):
             print(f"{i + 1}. {animal['nome']} - {animal['especie']} - {animal['raca']} - {animal['idade']} anos - {animal['saúde']} - {animal['data de chegada']} - {animal['comportamento']}")
-            return True
+
+            mostrar_contagem_regressiva(animal['nome'], cuidados)
+
+        return True
 
 
 def editar_animais():
@@ -126,7 +133,6 @@ def adicionar_cuidado():
     }
     cuidados.append(cuidado)
     print('Cuidado registrado com sucesso.')
-
 
 def visualizar_cuidados():
     if not cuidados:
