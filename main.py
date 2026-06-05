@@ -5,7 +5,7 @@ from topico3 import mostrar_contagem_regressiva, calcular_dias_restantes
 animais = []
 cuidados = []
 
-#topico 1
+#tópico 1
 
 def adicionar_animais():
     animal = {
@@ -29,10 +29,12 @@ def visualizar_animais():
         for i, animal in enumerate(animais):
             print(f"{i + 1}. {animal['nome']} - {animal['especie']} - {animal['raca']} - {animal['idade']} anos - {animal['saúde']} - {animal['data de chegada']} - {animal['comportamento']}")
 
+            # tópico 3
             mostrar_contagem_regressiva(animal['nome'], cuidados)
 
         return True
 
+# continua tópico 1
 
 def editar_animais():
     visualizar_animais()
@@ -95,7 +97,7 @@ def excluir_animais():
         print('Entrada inválida. Digite um número válido.')
 
 
-#topico 2
+#tópico 2
 
 def adicionar_cuidado():
     if not animais:
@@ -189,7 +191,7 @@ def excluir_cuidado():
     except ValueError:
         print('Entrada inválida. Digite um número.')
 
-#topico 5
+#tópico 5
 
 def menu_sugestoes_personalizadas(animais):
     nome_busca = input('Digite o nome do animal para buscar sugestões personalizadas: ')
