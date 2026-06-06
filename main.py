@@ -2,6 +2,8 @@ from datetime import datetime
 
 from topico3 import mostrar_contagem_regressiva, calcular_dias_restantes 
 
+import csv
+
 animais = []
 cuidados = []
 
@@ -190,6 +192,45 @@ def excluir_cuidado():
             print('Número inválido.')
     except ValueError:
         print('Entrada inválida. Digite um número.')
+
+#tópico 4
+
+def salvar_dados():
+    
+    if animais:  
+        with open("animais.csv", "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=animais[0].keys())
+            writer.writeheader()
+            writer.writerows(animais)
+
+    
+    if cuidados:  
+        with open("cuidados.csv", "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=cuidados[0].keys())
+            writer.writeheader()
+            writer.writerows(cuidados)
+
+
+def carregar_dados():
+    try:
+        with open("animais.csv", "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for linha in reader:
+                
+                if "idade" in linha and linha["idade"].isdigit():
+                    linha["idade"] = int(linha["idade"])
+                animais.append(linha)
+    except FileNotFoundError:
+        pass
+
+    try:
+        with open("cuidados.csv", "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for linha in reader:
+                cuidados.append(linha)
+    except FileNotFoundError:
+        pass
+
 
 #tópico 5
 
