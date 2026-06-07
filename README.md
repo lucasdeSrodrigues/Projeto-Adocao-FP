@@ -32,6 +32,7 @@ Ele permite controlar dados dos animais, registrar cuidados e atividades, acompa
 5. Gerenciar cuidados e atividades
 6. Sugestões personalizadas
 7. Animal destaque do abrigo
+   
 0\. Sair
 
    
