@@ -308,41 +308,115 @@ def menu_sugestoes_personalizadas(animais):
         print(f"- {compatibilidade}") 
     print("="*100 + "\n")
 
+
+#tópico 6(bônus)
+
+def animal_destaque():
+    if not animais:
+        print("Nenhum animal cadastrado.")
+        return
+
+    melhor_animal = None
+    maior_pontuacao = -1
+
+    for animal in animais:
+        pontos = 0
+
+        if animal['saúde'].lower() == 'saudavel':
+            pontos += 30
+
+        if animal['idade'] <= 5:
+            pontos += 20
+
+        if animal['comportamento'].lower() == 'calmo':
+            pontos += 20
+
+        if animal['especie'].lower() == 'cachorro':
+            pontos += 10
+
+        if pontos > maior_pontuacao:
+            maior_pontuacao = pontos
+            melhor_animal = animal
+
+    print("\n" + "="*40)
+    print("ANIMAL DESTAQUE DO ABRIGO")
+    print("="*40)
+    print(f"Nome: {melhor_animal['nome']}")
+    print(f"Espécie: {melhor_animal['especie']}")
+    print(f"Raça: {melhor_animal['raca']}")
+    print(f"Idade: {melhor_animal['idade']} anos")
+    print(f"Saúde: {melhor_animal['saúde']}")
+    print(f"Pontuação: {maior_pontuacao}")
+    print("\nMotivos para destaque:")
+
+    if melhor_animal['saúde'].lower() == 'saudavel':
+        print("- Animal saudável")
+
+    if melhor_animal['idade'] <= 5:
+        print("- Animal jovem")
+
+    if melhor_animal['comportamento'].lower() == 'calmo':
+        print("- Comportamento tranquilo")
+
+    print("="*40)
+
+#menu principal
+
 while True:
     print('\nEscolha uma opção:')
     print('1. Adicionar animal')
     print('2. Visualizar animais')
     print('3. Editar animal')
     print('4. Excluir animal')
-    print('5. Registrar cuidado')
-    print('6. Visualizar cuidado(s)')
-    print('7. Editar cuidado')
-    print('8. Excluir cuidado')
-    print('9. Sugestões personalizadas')
+    print('5. Cuidados e Atividades')
+    print('6. Sugestões personalizadas')
+    print('7. Animal destaque do abrigo')
     print('0. Sair')
 
     opcao = input('Escolha uma opção: ')
 
     if opcao == '1':
         adicionar_animais()
+
     elif opcao == '2':
         visualizar_animais()
+
     elif opcao == '3':
         editar_animais()
+
     elif opcao == '4':
         excluir_animais()
+
     elif opcao == '5':
-        adicionar_cuidado()
+        
+        print('1. Registrar cuidado')
+        print('2. Visualizar cuidado(s)')
+        print('3. Editar cuidado')
+        print('4. Excluir cuidado')
+
+        escolha_cuidado = input('Escolha uma opção: ')
+
+        if escolha_cuidado == '1':
+            adicionar_cuidado()
+        elif escolha_cuidado == '2':
+            visualizar_cuidados()
+        elif escolha_cuidado == '3':
+            editar_cuidado()
+        elif escolha_cuidado == '4':
+            excluir_cuidado()
+        else:
+            print('Opção inválida. Retornando ao menu principal.')
+            break
+
     elif opcao == '6':
-        visualizar_cuidados()
-    elif opcao == '7':
-        editar_cuidado()
-    elif opcao == '8':
-        excluir_cuidado()
-    elif opcao == '9':
         menu_sugestoes_personalizadas(animais)
+
+    elif opcao == '7':
+        animal_destaque()
+
     elif opcao == '0':
         print('Saindo do programa. Até a próxima!')
         break
+
     else:
         print('Opção inválida. Tente novamente.')
