@@ -32,17 +32,17 @@ Ele permite controlar dados dos animais, registrar cuidados e atividades, acompa
 5. Gerenciar cuidados e atividades
 6. Sugestões personalizadas
 7. Animal destaque do abrigo
-0. Sair
+00. Sair
 
    
 # Restrições:
 
 -O sistema roda apenas em linha de comando.
 -Não utiliza bibliotecas externas além de:
-    os (para limpar tela)
-    datetime (para cálculos de datas)
-    random (para funcionalidades extras)
-    csv (para salvar e carregar dados)
+    \nos (para limpar tela)
+    \ndatetime (para cálculos de datas)
+    \nrandom (para funcionalidades extras)
+    \ncsv (para salvar e carregar dados)
 -Os dados são salvos em arquivos locais (.csv), sem banco de dados.
 
 
